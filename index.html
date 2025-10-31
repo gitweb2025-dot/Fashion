@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fashion</title>
+
+    <!-- Font Awesome Cdn Link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Aos Cdn Link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind Css  -->
+    <link rel="stylesheet" href="./output.css" />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+
+      body {
+        font-family: "Josefin Sans", sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* Hamburger animation */
+      .hamburger span {
+        display: block;
+        width: 1.5rem;
+        height: 0.125rem;
+        margin: 0.4rem auto;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background-color: currentColor;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+
+      /* Mobile menu slide + fade */
+      .mobile-menu {
+        max-height: 0;
+        opacity: 0;
+        /* height: 100vh; */
+        transform: translateX(-100%);
+        /* overflow: hidden; */
+        transition: all 0.5s ease-in-out;
+      }
+
+      .mobile-menu.open {
+        /* max-height: 1000px; */
+        /* enough for nav links */
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .pop {
+        animation: popup 0.5s linear forwards;
+      }
+
+      @keyframes popup {
+        from {
+          transform: scale(0);
+          opacity: 0;
+        }
+
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .popout {
+        animation: popout 0.4s linear backwards;
+      }
+
+      @keyframes popout {
+        from {
+          transform: scale(1);
+          opacity: 1;
+        }
+
+        to {
+          transform: scale(0);
+          opacity: 0;
+        }
+      }
+
+      .marquee-inner {
+        display: flex;
+        width: fit-content;
+        animation: marqueeScroll linear infinite;
+        animation-duration: 20s; /* Adjust based on number of cards */
+      }
+
+      @keyframes marqueeScroll {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+  </head>
+
+  <body class="antialiased bg-white text-black">
+    <!-- Navbar  -->
+    <header
+      class="sticky top-0 z-50 border-b border-slate-200 bg-white backdrop-blur w-full mx-auto"
+    >
+      <div class="flex items-center justify-between p-3">
+        <!-- Logo -->
+        <a class="" href="./index.html">
+          <img class="h-8" src="../Assets/logo.png" alt="logo" />
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav
+          class="hidden md:flex space-x-2 md:space-x-3 lg:space-x-5 text-sm font-medium"
+        >
+          <!-- Home with Dropdown -->
+          <div class="relative">
+            <!-- Parent Button -->
+            <button
+              class="relative inline-block text-black after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-gray-200 after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
+            >
+              <a href="./index.html">Home</a>
+              <i id="homeToggle" class="fa-solid fa-caret-down"></i>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <ul
+              id="homeMenu"
+              class="absolute hidden bg-white shadow-lg mt-2 rounded w-40"
+            >
+              <!-- <li>
+                <a
+                  href="./index.html"
+                  class="block px-4 py-2 hover:bg-gray-50 hover:text-gray-800"
+                >
+                  Home 1
+                </a>
+              </li> -->
+
+              <li>
+                <a
+                  href="./Home/Home1.html"
+                  class="block px-4 py-2 text-black hover:bg-gray-50 hover:text-gray-800 tr"
+                >
+                  Home 2
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- About Us -->
+          <a
+            href="./About/About.html"
+            class="relative inline-block text-black after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-gray-200 after:transition-all after:duration-300 hover:after:w-full"
+          >
+            Men
+          </a>
+
+          <!-- Services -->
+          <a
+            href="./Service/Service.html"
+            class="relative inline-block text-black after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-gray-200 after:transition-all after:duration-300 hover:after:w-full"
+          >
+            Women
+          </a>
+          <!-- Events -->
+          <a
+            href="./Event/Event.html"
+            class="relative inline-block text-black after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-gray-200 after:transition-all after:duration-300 hover:after:w-full"
+          >
+            Shop
+          </a>
+          <!-- Contact -->
+          <a
+            href="./Contact/Contact.html"
+            class="relative inline-block text-black after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-gray-200 after:transition-all after:duration-300 hover:after:w-full"
+          >
+            Contact
+          </a>
+          <!-- Dashboard -->
+          <a
+            href="./Dashboard/Dashboard.html"
+            class="relative inline-block text-black after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-gray-200 after:transition-all after:duration-300 hover:after:w-full"
+          >
+            Dashboard
+          </a>
+        </nav>
+        <!-- login & cart -->
+        <div class="hidden lg:flex text-sm gap-4 font-medium">
+          <button
+            id="cart"
+            class="flex items-center gap-2 rounded-full text-sm transform hover:scale-95 transition duration-200 ease-out cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+              />
+            </svg>
+          </button>
+          <a
+            class="flex items-center gap-2 rounded-3xl text-sm transform hover:scale-95 transition duration-200 ease-out"
+            href="./Signin.html"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Hamburger -->
+        <button
+          id="hamburger"
+          class="hamburger cursor-pointer lg:hidden focus:outline-none"
+          aria-label="Menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <nav id="mobileMenu" class="mobile-menu h-screen lg:hidden shadow-md">
+        <ul
+          class="flex flex-col space-y-4 p-3 text-sm font-medium h-screen md:w-1/2 bg-white"
+        >
+          <!-- Home dropDown  -->
+          <div class="relative">
+            <button
+              class="flex items-center gap-1 w-full text-left hover:text-gray-800 transition-colors lg:hidden"
+            >
+              <a href="./index.html">Home</a>
+              <i id="mobileToggle" class="fa-solid fa-caret-down"></i>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <ul
+              id="mobileLink"
+              class="hidden bg-white mt-2 rounded w-full md:absolute"
+            >
+              <li>
+                <a
+                  href="./404.html"
+                  class="block px-2 py-2 hover:bg-gray-50 hover:text-gray-800"
+                >
+                  Home 1
+                </a>
+              </li>
+              <li class=""></li>
+              <li>
+                <a
+                  href="./Home/Home1.html"
+                  class="block px-2 py-2 hover:bg-gray-50 hover:text-gray-800"
+                >
+                  Home 2
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- About Us -->
+          <li>
+            <a
+              href="./About/About.html"
+              class="nav-link block hover:text-gray-800 transition-colors"
+              >About Us</a
+            >
+          </li>
+          <!-- Services -->
+          <li>
+            <a
+              href="./Service/Service.html"
+              class="nav-link block hover:text-gray-800 transition-colors"
+              >Services</a
+            >
+          </li>
+          <!-- Events -->
+          <li>
+            <a
+              href="./Event/Event.html"
+              class="nav-link block hover:text-gray-800 transition-colors"
+              >Events</a
+            >
+          </li>
+          <!-- Contact -->
+          <li>
+            <a
+              href="./Contact/Contact.html"
+              class="nav-link block hover:text-gray-800 transition-colors"
+              >Contact</a
+            >
+          </li>
+          <!-- Dashboard -->
+          <li>
+            <a
+              href="./Dashboard/Dashboard.html"
+              class="nav-link block hover:text-gray-800 transition-colors"
+              >Dashboard</a
+            >
+          </li>
+          <li>
+            <button
+              id="book"
+              class="nav-link text-gray-500 block hover:text-gray-800 transition-colors"
+            >
+              Book Now
+            </button>
+          </li>
+          <li>
+            <a
+              href="./Signin.html"
+              class="flex items-center gap-2 nav-link hover:text-gray-800 transition-colors"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
+              </svg>
+              Login</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Dropdown script  -->
+      <script>
+        const homeToggle = document.getElementById("homeToggle");
+        const homeMenu = document.getElementById("homeMenu");
+
+        homeToggle.addEventListener("click", () => {
+          homeMenu.classList.toggle("hidden");
+        });
+
+        const mobileToggle = document.getElementById("mobileToggle");
+        const mobileLink = document.getElementById("mobileLink");
+
+        // Home dropdown toggle (mobile only)
+        mobileToggle.addEventListener("click", () => {
+          mobileLink.classList.toggle("hidden");
+        });
+
+        // Optional: close menu if clicked outside
+        window.addEventListener("click", (e) => {
+          if (!homeToggle.contains(e.target) && !homeMenu.contains(e.target)) {
+            homeMenu.classList.add("hidden");
+          }
+        });
+      </script>
+    </header>
+
+    <!-- Announcement Bar -->
+    <div class="p-3 overflow-hidden">
+      <div
+        class="w-full py-2.5 px-3 font-medium text-sm text-black bg-[#e9d6bf]"
+      >
+        <div
+          class="mx-auto flex flex-col sm:flex-row justify-center items-start sm:items-center gap-4"
+        >
+          <p>
+            <i class="fa-solid fa-truck"></i> Free Shipping on Orders Above $50
+          </p>
+          <span class="hidden sm:inline">|</span>
+          <p><i class="fa-solid fa-gift"></i> 20% OFF on First Purchase</p>
+          <!-- <span class="hidden sm:inline">|</span> -->
+          <!-- <p><i class="fa-solid fa-lock"></i> Use Code: <strong class="uppercase">welcome10</strong></p> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Home Women -->
+    <main class="relative p-3 overflow-x-hidden">
+      <div class="absolute p-3 inset-0 z-[-1]">
+        <img
+          class="w-full h-[450px] object-cover object-[20%_20%]"
+          src="./Assets/home3.jpg"
+          alt="bg-image"
+        />
+      </div>
+
+      <div
+        class="h-[450px] w-full flex flex-col items-start justify-center max-w-3xl px-3 space-y-4"
+      >
+        <p>Casual & Everyday</p>
+        <h1 class="text-5xl font-primary font-bold">
+          Effortlessly blend comfort & style!
+        </h1>
+        <p>
+          Effortlessly blend comfort and style with our Casual & Everyday
+          collection, featuring cozy sweaters, versatile denim, laid-back tees,
+          and relaxed-fit joggers for your everyday adventures
+        </p>
+        <a
+          class="px-6 py-3 border border-black/50 transform hover:scale-95 transition duration-300 ease-in-out"
+          href=""
+          >View Collections</a
+        >
+      </div>
+    </main>
+
+    <!-- products -->
+    <section class="relative p-3 overflow-x-hidden">
+      <h1
+        class="text-3xl font-medium text-slate-800 text-center mb-2 font-poppins"
+      >
+        Women's New Arrivals
+      </h1>
+      <p class="text-slate-600 mb-10 font-poppins text-center">
+        Explore the latest additions to our women's collection.
+      </p>
+
+      <!-- products -->
+      <section
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 items-center justify-center gap-6"
+      >
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/pro-1.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 29.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/pro-2.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 39.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/pro-3.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 29.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/pro-4.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 49.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/pro-5.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 29.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/pro-6.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 29.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/pro-7.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 39.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/pro-8.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 29.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/pro-9.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 49.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/pro-10.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 29.00</p>
+        </div>
+      </section>
+    </section>
+
+    <!-- Home Men -->
+    <section class="relative p-3 overflow-x-hidden">
+      <div class="absolute p-3 inset-0 z-[-1]">
+        <img
+          class="w-full h-[450px] object-cover object-[30%_30%]"
+          src="./Assets/home4.jpg"
+          alt="bg-image"
+        />
+      </div>
+
+      <div
+        class="h-[450px] w-full flex flex-col items-start justify-center max-w-3xl px-3 space-y-4"
+      >
+        <p>Casual & Everyday</p>
+        <h1 class="text-5xl font-primary font-bold">
+          Effortlessly blend comfort & style!
+        </h1>
+        <p>
+          Effortlessly blend comfort and style with our Casual & Everyday
+          collection, featuring cozy sweaters, versatile denim, laid-back tees,
+          and relaxed-fit joggers for your everyday adventures
+        </p>
+        <a
+          class="px-6 py-3 border border-black/50 transform hover:scale-95 transition duration-300 ease-in-out"
+          href=""
+          >View Collections</a
+        >
+      </div>
+    </section>
+
+    <!-- Cashback -->
+    <section class="relative p-3 overflow-x-hidden">
+      <div class="grid grid-cols-1 sm:grid-cols-2 border border-black p-2">
+        <!-- image -->
+        <div
+          class="flex flex-wrap gap-4 items-center justify-center w-full md:border-r-2 py-3"
+        >
+          <img
+            class="h-10 max-sm:h-14 md:h-20"
+            src="./Assets/idfc.png"
+            alt="idfc"
+          />
+          <img
+            class="h-8 max-sm:h-12 md:h-18"
+            src="./Assets/hdfc.png"
+            alt="hdfc"
+          />
+        </div>
+        <!-- 7.5 % -->
+        <div
+          class="flex flex-col items-center justify-center gap-2 border-t-2 md:border-t-0 py-3"
+        >
+          <h1 class="text-3xl md:text-4xl text-center font-bold">
+            Flat 7.5% Cashback
+          </h1>
+          <p>UPTO ₹ 4000 per Quarter</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- products -->
+    <section class="relative p-3 overflow-x-hidden">
+      <h1
+        class="text-3xl font-medium text-slate-800 text-center mb-2 font-poppins"
+      >
+        Men's New Arrivals
+      </h1>
+      <p class="text-slate-600 mb-10 font-poppins text-center">
+        Explore the latest additions to our Men's collection.
+      </p>
+
+      <!-- products -->
+      <section
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 items-center justify-center gap-6"
+      >
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/men-pro-1.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 29.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/men-pro-2.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 39.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/men-pro-3.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 29.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/men-pro-4.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 49.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/men-pro-5.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 29.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/men-pro-6.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 29.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/men-pro-7.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 39.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/men-pro-8.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 29.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/men-pro-9.jpg"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 49.00</p>
+        </div>
+
+        <div class="group relative">
+          <div>
+            <a
+              href=""
+              class="absolute p-2 bg-white/50 rounded-xl right-2 top-2 cursor-pointer transform hover:scale-95 duration-200 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            </a>
+          </div>
+          <img
+            class="rounded-lg w-full h-72 object-cover object-top"
+            src="./Assets/men-pro-10.avif"
+            alt="image"
+          />
+          <p class="text-sm mt-2">White crew-Neck T-Shirt</p>
+          <p class="text-xl">$ 29.00</p>
+        </div>
+      </section>
+    </section>
+
+    <!-- Mobile App -->
+    <section class="relative p-3 overflow-x-hidden">
+      <div
+        class="flex flex-col md:flex-row items-center justify-around text-sm border border-gray-300 rounded-md w-full bg-white"
+      >
+        <div
+          class="flex flex-col text-center md:text-left items-center md:items-start pt-14 md:p-10"
+        >
+          <h2 class="md:text-4xl text-2xl font-semibold text-gray-800">
+            Download Mobile App
+          </h2>
+          <p class="text-gray-700 mt-2 w-3/4">
+            Mobile banking app for iOS & Android to manage your online money.
+          </p>
+
+          <div class="flex items-center gap-4 mt-6">
+            <a
+              href=""
+              aria-label="googlePlayBtn"
+              class="hover:scale-95 transition-all duration-200 ease-in"
+              type="button"
+            >
+              <img
+                class="md:w-44 w-28"
+                src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/appDownload/googlePlayBtn.svg"
+                alt="googlePlayBtn"
+              />
+            </a>
+            <a
+              href=""
+              aria-label="appleStoreBtn"
+              class="hover:scale-95 transition-all duration-200 ease-in"
+              type="button"
+            >
+              <img
+                class="md:w-44 w-28"
+                src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/appDownload/appleStoreBtn.svg"
+                alt="appleStoreBtn"
+              />
+            </a>
+          </div>
+        </div>
+
+        <img
+          class="max-w-[375px] pt-10 md:p-0"
+          src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/appDownload/excitedWomenImage.png"
+          alt="excitedWomenImage"
+        />
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative p-3 overflow-x-hidden">
+      <div
+        class="flex flex-col md:flex-row items-start justify-between gap-10 py-10 border-b border-gray-500/30 text-gray-500"
+      >
+        <div>
+          <img class="h-8" src="./Assets/logo.png" alt="dummyLogoColored" />
+          <p class="mt-6 max-w-2xl">
+            If you would like to experience the best of online shopping for men,
+            women and kids in India, you are at the right place. Stackly is the
+            ultimate destination for fashion and lifestyle, being host to a wide
+            array of merchandise including clothing, footwear, accessories,
+            jewellery, personal care products and more.
+          </p>
+        </div>
+        <div class="flex flex-wrap justify-between w-full md:w-[45%] gap-5">
+          <div>
+            <h3 class="font-semibold text-base text-gray-900 md:mb-5 mb-2">
+              Quick Links
+            </h3>
+            <ul class="text-sm space-y-1">
+              <li><a href="#" class="hover:underline transition">Home</a></li>
+              <li>
+                <a href="#" class="hover:underline transition">Best Sellers</a>
+              </li>
+              <li>
+                <a href="#" class="hover:underline transition"
+                  >Offers & Deals</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:underline transition">Contact Us</a>
+              </li>
+              <li><a href="#" class="hover:underline transition">FAQs</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-base text-gray-900 md:mb-5 mb-2">
+              Need Help?
+            </h3>
+            <ul class="text-sm space-y-1">
+              <li>
+                <a href="#" class="hover:underline transition"
+                  >Delivery Information</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:underline transition"
+                  >Return & Refund Policy</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:underline transition"
+                  >Payment Methods</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:underline transition"
+                  >Track your Order</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:underline transition">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-base text-gray-900 md:mb-5 mb-2">
+              Follow Us
+            </h3>
+            <ul class="text-sm space-y-1">
+              <li>
+                <a href="#" class="hover:underline transition">Instagram</a>
+              </li>
+              <li>
+                <a href="#" class="hover:underline transition">Twitter</a>
+              </li>
+              <li>
+                <a href="#" class="hover:underline transition">Facebook</a>
+              </li>
+              <li>
+                <a href="#" class="hover:underline transition">YouTube</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="py-4 border-b border-gray-500/30 overflow-hidden">
+        <iframe
+          class="w-full h-[300px] rounded-2xl"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3907.1616097152896!2d78.1739798!3d11.682956599999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babefef7fd970bb%3A0xe11aef1a71994f9!2sStackly!5e0!3m2!1sen!2sin!4v1761905259614!5m2!1sen!2sin"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+
+      <div>
+        <p class="py-4 text-center text-sm md:text-base text-gray-500/80">
+          Copyright 2025 © stackly All Right Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Aos Animation  -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+      integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      AOS.init({
+        duration: 800,
+        // delay: 200, // default delay for all elements
+        once: false,
+        mirror: true,
+      });
+    </script>
+
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const links = mobileMenu.querySelectorAll(".nav-link");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        mobileMenu.classList.toggle("open");
+      });
+
+      links.forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          mobileMenu.classList.remove("open");
+        });
+      });
+
+      // Optional: close menu if clicked outside
+      window.addEventListener("click", (e) => {
+        if (!homeToggle.contains(e.target) && !homeMenu.contains(e.target)) {
+          homeMenu.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
